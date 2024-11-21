@@ -30,39 +30,35 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen pb-20 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <div className="flex-1 flex justify-center">
-        <main className="flex flex-col gap-8 w-[600px] max-w-full">
-          <h1 className="text-4xl font-bold text-center">Objection! Let&apos;s Make It Legal</h1>
-          <div className="flex flex-col gap-4">
-            <textarea 
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' && !e.shiftKey && !isLoading) {
-                  e.preventDefault();
-                  handleTranslate();
-                }
-              }}
-              placeholder="Enter your text here..."
-              className="w-full rounded-md border border-gray-300 bg-black px-6 py-3 mt-4 text-lg resize-none min-h-[100px]"
-            />
-            <button
-              onClick={handleTranslate}
-              disabled={isLoading}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md text-lg disabled:opacity-50"
-            >
-              {isLoading ? "Translating..." : "Translate to Legal Terms"}
-            </button>
-            {error && (
-              <ErrorText error={error} />
-            )}
-            {legalese && (
-              <ContentText text={legalese} />
-            )}
-          </div>
-        </main>
-      </div>
-    </div>
+      <main className="flex flex-col gap-8 w-[600px] max-w-full">
+        <h1 className="text-4xl font-bold text-center">Objection! Let&apos;s Make It Legal</h1>
+        <div className="flex flex-col gap-4">
+          <textarea
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' && !e.shiftKey && !isLoading) {
+                e.preventDefault();
+                handleTranslate();
+              }
+            }}
+            placeholder="Enter your text here..."
+            className="w-full rounded-md border border-gray-300 bg-black px-6 py-3 mt-4 text-lg resize-none min-h-[100px]"
+          />
+          <button
+            onClick={handleTranslate}
+            disabled={isLoading}
+            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md text-lg disabled:opacity-50"
+          >
+            {isLoading ? "Translating..." : "Translate to Legal Terms"}
+          </button>
+          {error && (
+            <ErrorText error={error} />
+          )}
+          {legalese && (
+            <ContentText text={legalese} />
+          )}
+        </div>
+      </main>
   );
 }
