@@ -29,6 +29,12 @@ export default function Home() {
     }
   };
 
+  const handleSubmit = () => {
+    handleTranslate();
+    setInput("");
+    setLegalese("");
+  }
+
   return (
       <main className="flex flex-col gap-8 w-[600px] max-w-full">
         <h1 className="text-4xl font-bold text-center">Objection! Let&apos;s Make It Legal</h1>
@@ -39,14 +45,14 @@ export default function Home() {
             onKeyDown={(e) => {
               if (e.key === 'Enter' && !e.shiftKey && !isLoading) {
                 e.preventDefault();
-                handleTranslate();
+                handleSubmit();
               }
             }}
             placeholder="Enter your text here..."
             className="w-full rounded-md border border-gray-300 bg-black px-6 py-3 mt-4 text-lg resize-none min-h-[100px]"
           />
           <button
-            onClick={handleTranslate}
+            onClick={handleSubmit}
             disabled={isLoading}
             className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md text-lg disabled:opacity-50"
           >
