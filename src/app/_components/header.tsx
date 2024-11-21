@@ -11,7 +11,7 @@ export default function Header() {
             <path d="M5 17H9M15 17H19" stroke="white" strokeWidth="2" strokeLinecap="round"/>
             <path d="M3 21H21" stroke="white" strokeWidth="2" strokeLinecap="round"/>
           </svg>
-          <span className="font-bold text-xl">Lawyer AI</span>
+          <span className="font-bold text-2xl">Lawyer AI</span>
         </div>
         <nav className="flex gap-4">
           <Link 
