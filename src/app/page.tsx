@@ -2,10 +2,12 @@
 
 import { useState } from "react";
 import { translateToLegalese } from "./_services/openai";
+import ContentText from "./_components/contentText";
+import ErrorText from "./_components/errorText";
 
 export default function Home() {
   const [input, setInput] = useState("");
-  const [error, setError] = useState("");
+  const [error, setError] = useState<string | null>(null);
   const [legalese, setLegalese] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -31,14 +33,19 @@ export default function Home() {
     <div className="flex flex-col min-h-screen pb-20 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <div className="flex-1 flex justify-center">
         <main className="flex flex-col gap-8 w-[600px] max-w-full">
-          <h1 className="text-4xl font-bold text-center">Lawyer AI</h1>
+          <h1 className="text-4xl font-bold text-center">Objection! Let&apos;s Make It Legal</h1>
           <div className="flex flex-col gap-4">
-            <input 
-              type="text" 
+            <textarea 
               value={input}
               onChange={(e) => setInput(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' && !e.shiftKey && !isLoading) {
+                  e.preventDefault();
+                  handleTranslate();
+                }
+              }}
               placeholder="Enter your text here..."
-              className="w-full rounded-md border border-gray-300 bg-black px-6 py-3 mt-4 text-lg"
+              className="w-full rounded-md border border-gray-300 bg-black px-6 py-3 mt-4 text-lg resize-none min-h-[100px]"
             />
             <button
               onClick={handleTranslate}
@@ -48,16 +55,10 @@ export default function Home() {
               {isLoading ? "Translating..." : "Translate to Legal Terms"}
             </button>
             {error && (
-              <div className="mt-8 p-6 border border-red-400 rounded-md bg-red-900">
-                <h2 className="text-xl font-semibold mb-4 text-red-200">Error:</h2>
-                <p className="text-red-200">{error}</p>
-              </div>
+              <ErrorText error={error} />
             )}
             {legalese && (
-              <div className="mt-8 p-6 border border-gray-700 rounded-md bg-gray-900">
-                <h2 className="text-xl font-semibold mb-4">Legal Translation:</h2>
-                <p className="text-gray-200">{legalese}</p>
-              </div>
+              <ContentText text={legalese} />
             )}
           </div>
         </main>
