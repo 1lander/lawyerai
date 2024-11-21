@@ -1,12 +1,19 @@
+import toast from "react-hot-toast";
+
 interface ContentTextProps {
   text: string;
 }
 
 export default function ContentText({ text }: ContentTextProps) {
+  const notify = () => toast('Copied to clipboard');
+
   return (
     <div className="mt-8 p-6 border border-gray-700 rounded-md bg-gray-900 relative">
       <button
-        onClick={() => navigator.clipboard.writeText(text)}
+        onClick={() => {
+          navigator.clipboard.writeText(text);
+          notify();
+        }}
         className="absolute top-4 right-4 p-2 hover:bg-gray-800 rounded-md"
         title="Copy to clipboard"
       >
