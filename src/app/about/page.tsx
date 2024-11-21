@@ -1,9 +1,9 @@
 
 export default function About() {
   return (
-    <div className="flex flex-col items-center justify-center p-8 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+    <div className="flex flex-col items-center justify-center p-8 sm:pt-10 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col items-center gap-8 max-w-2xl">
-        <h1 className="text-4xl font-bold mb-8">About Lawyer AI</h1>
+        <h1 className="text-4xl font-bold">About Lawyer AI</h1>
         <section className="space-y-6 text-lg">
         <p>
           Lawyer AI is your bridge between everyday language and professional legal terminology. We help you communicate your ideas with the precision and formality that legal contexts require.

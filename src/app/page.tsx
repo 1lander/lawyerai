@@ -49,7 +49,7 @@ export default function Home() {
       />
 
       <div className="flex-1 px-5 xl:px-52 pt-10 h-full">
-        <h1 className="text-4xl font-bold text-center">Let&apos;s make it legal!</h1>
+        <h1 className="text-4xl font-bold text-center mb-3">Let&apos;s make it legal!</h1>
         <div className="flex flex-col gap-4">
           <textarea
             value={input}
