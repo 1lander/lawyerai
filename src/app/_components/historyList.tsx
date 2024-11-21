@@ -1,5 +1,5 @@
 interface HistoryListProps {
-  legalese: string[];
+  legalese: Array<{text: string, timestamp: string}>;
   currentLegalese: string;
   setCurrentLegalese: (text: string) => void;
   remove: (index: number) => void;
@@ -20,16 +20,19 @@ export default function HistoryList({
             key={index}
             className="p-3 rounded-lg bg-gray-800 hover:bg-gray-700 cursor-pointer relative group"
           >
-            <div onClick={() => setCurrentLegalese(item)}>
+            <div onClick={() => setCurrentLegalese(item.text)}>
               <p className="text-sm text-gray-300 line-clamp-2">
-                {item.length > 80 ? `${item.substring(0, 80)}...` : item}
+                {item.text.length > 80 ? `${item.text.substring(0, 80)}...` : item.text}
+              </p>
+              <p className="text-xs text-gray-500 mt-1">
+                {new Date(item.timestamp).toLocaleString()}
               </p>
             </div>
             <button
               onClick={(e) => {
                 e.stopPropagation();
                 remove(index);
-                if (currentLegalese === item) {
+                if (currentLegalese === item.text) {
                   setCurrentLegalese("");
                 }
               }}
