@@ -12,7 +12,7 @@ export default function HistoryList({
   remove
 }: HistoryListProps) {
   return (
-    <aside className="w-64 h-full border-r border-gray-700 p-4 overflow-y-auto">
+    <aside className="w-32 xl:w-64 h-full border-r border-gray-700 p-4 overflow-y-auto">
       <h2 className="text-xl font-semibold mb-4">History</h2>
       <div className="space-y-3">
         {legalese.map((item, index) => (

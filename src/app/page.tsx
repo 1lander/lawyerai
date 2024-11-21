@@ -48,7 +48,7 @@ export default function Home() {
         remove={remove}
       />
 
-      <div className="flex-1 px-52 pt-20 h-full">
+      <div className="flex-1 px-5 xl:px-52 pt-10 h-full">
         <h1 className="text-4xl font-bold text-center">Objection! Let&apos;s Make It Legal</h1>
         <div className="flex flex-col gap-4">
           <textarea
