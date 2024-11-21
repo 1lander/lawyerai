@@ -5,6 +5,7 @@ import { translateToLegalese } from "./_services/openai";
 import ContentText from "./_components/contentText";
 import ErrorText from "./_components/errorText";
 import { useLegaleseStore } from "./_stores/legalese";
+import HistoryList from "./_components/historyList";
 
 export default function Home() {
   const [input, setInput] = useState("");
@@ -39,40 +40,15 @@ export default function Home() {
   }
 
   return (
-    <main className="flex">
-      <aside className="w-64 h-screen border-r border-gray-700 p-4 overflow-y-auto">
-        <h2 className="text-xl font-semibold mb-4">History</h2>
-        <div className="space-y-3">
-          {legalese.map((item, index) => (
-            <div 
-              key={index}
-              className="p-3 rounded-lg bg-gray-800 hover:bg-gray-700 cursor-pointer relative group"
-            >
-              <div onClick={() => setCurrentLegalese(item)}>
-                <p className="text-sm text-gray-300 line-clamp-2">
-                  {item.length > 80 ? `${item.substring(0, 80)}...` : item}
-                </p>
-              </div>
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  remove(index);
-                  if (currentLegalese === item) {
-                    setCurrentLegalese("");
-                  }
-                }}
-                className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity p-1 hover:bg-gray-600 rounded"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-gray-400 hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-          ))}
-        </div>
-      </aside>
+    <main className="flex h-full">
+      <HistoryList
+        legalese={legalese}
+        currentLegalese={currentLegalese}
+        setCurrentLegalese={setCurrentLegalese}
+        remove={remove}
+      />
 
-      <div className="flex-1 px-52 pt-20">
+      <div className="flex-1 px-52 pt-20 h-full">
         <h1 className="text-4xl font-bold text-center">Objection! Let&apos;s Make It Legal</h1>
         <div className="flex flex-col gap-4">
           <textarea
