@@ -5,14 +5,21 @@ interface ContentTextProps {
 }
 
 export default function ContentText({ text }: ContentTextProps) {
-  const notify = () => toast('Copied to clipboard');
+  const notifyClipboard = () => toast('Copied to clipboard', { 
+    position: "top-center", 
+    icon: '📋', 
+    iconTheme: {
+      primary: '#000',
+      secondary: '#fff',
+    },
+  });
 
   return (
     <div className="mt-8 p-6 border border-gray-700 rounded-md bg-gray-900 relative">
       <button
         onClick={() => {
           navigator.clipboard.writeText(text);
-          notify();
+          notifyClipboard();
         }}
         className="absolute top-4 right-4 p-2 hover:bg-gray-800 rounded-md"
         title="Copy to clipboard"
